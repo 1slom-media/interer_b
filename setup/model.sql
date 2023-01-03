@@ -92,9 +92,12 @@ CREATE TABLE IF NOT EXISTS products(
     design varchar(100) not null,
     rows smallint not null,
     cols smallint not null,
+    -- data varchar(50) not null,
     date timestamp default current_timestamp
 );
 
+ALTER TABLE products
+ADD COLUMN data_date VARCHAR(50);
 
 CREATE TABLE IF NOT EXISTS vakancy(
     vakancy_id serial PRIMARY KEY,

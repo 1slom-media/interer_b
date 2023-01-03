@@ -7,8 +7,8 @@ const GETPRODUCTS = `
 `;
 
 const POSTPRODUCTS =`
-insert into products (category_id,product_img1,product_img2,product_img3,product_img4,product_title_uz,product_title_en,product_title_ru,product_description_uz,product_description_en,product_description_ru,location,metr,still,design,cols,rows)
-values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) returning *
+insert into products (category_id,product_img1,product_img2,product_img3,product_img4,product_title_uz,product_title_en,product_title_ru,product_description_uz,product_description_en,product_description_ru,location,metr,still,design,cols,rows,data_date)
+values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) returning *
 `;
 
 
@@ -32,7 +32,8 @@ const PUTPRODUCTS = `
             still,
             design,
             cols,
-            rows
+            rows,
+            data_date
         from products
         where product_id = $1    
     ) update products as p
@@ -121,6 +122,11 @@ const PUTPRODUCTS = `
                 case 
                     when $18 > 1 then $18
                     else o.rows
+                end,
+                data_date = 
+                case 
+                    when length($19) > 1 then $19
+                    else o.data_date
                 end
     from old_products as o   
     where p.product_id = $1
