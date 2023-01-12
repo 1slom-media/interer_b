@@ -9,10 +9,10 @@ const GETPROJECTS = `
 const POSTPROJECTS =`
 insert into
     projects(
-        project_img,project_title_uz,project_title_en,project_title_ru,project_description_uz,project_description_en,project_description_ru
+        project_img,project_title_uz,project_title_en,project_title_ru,project_description_uz,project_description_en,project_description_ru,category_id
     )
 values
-    ($1,$2,$3,$4,$5,$6,$7) returning *
+    ($1,$2,$3,$4,$5,$6,$7,$8) returning *
 `;
 
 const PUTPROJECTS= `
@@ -25,7 +25,8 @@ const PUTPROJECTS= `
             project_title_ru,
             project_description_uz,
             project_description_en,
-            project_description_ru
+            project_description_ru,
+            category_id
         from projects
         where project_id = $1    
     ) update projects as p
@@ -65,6 +66,11 @@ const PUTPROJECTS= `
                     when length($8) > 1 then $8
                     else o.project_description_ru
                 end
+        category_id = 
+                case 
+                    when $9 > 0 then $9
+                    else o.category_id
+                end,
     from old_projects as o   
     where p.project_id = $1
     returning p.*                 

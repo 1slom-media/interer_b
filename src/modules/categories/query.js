@@ -10,7 +10,7 @@ where case
                             end 
 group by c.category_id
 order by c.category_id
-`;
+`; 
 
 const POSTCATEGORIES =`
 insert into categories (title_uz,title_en,title_ru)

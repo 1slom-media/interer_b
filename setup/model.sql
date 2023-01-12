@@ -43,6 +43,9 @@ CREATE TABLE IF NOT EXISTS projects(
     date timestamp default current_timestamp
 );
 
+ALTER TABLE projects
+ADD COLUMN category_id int;
+
 CREATE TABLE IF NOT EXISTS client(
     client_id serial PRIMARY KEY,
     client_text_uz text not null,
@@ -77,9 +80,6 @@ CREATE TABLE IF NOT EXISTS products(
     product_id serial primary key,
     category_id int references categories(category_id) not null,
     product_img1 text not null,
-    product_img2 text not null,
-    product_img3 text not null,
-    product_img4 text not null,
     product_title_uz varchar(250) not null,
     product_title_en varchar(250) not null,
     product_title_ru varchar(250) not null,
@@ -97,6 +97,22 @@ CREATE TABLE IF NOT EXISTS products(
 
 ALTER TABLE products
 ADD COLUMN data_date VARCHAR(50);
+
+CREATE TABLE IF NOT EXISTS images(
+    img_id serial primary key,
+    product_id int references products(product_id) not null,
+    image text not null,
+    date timestamp default current_timestamp
+);
+
+
+
+ALTER TABLE products
+DROP COLUMN product_img4;
+ALTER TABLE products
+DROP COLUMN product_img3;
+ALTER TABLE products
+DROP COLUMN product_img2;
 
 CREATE TABLE IF NOT EXISTS vakancy(
     vakancy_id serial PRIMARY KEY,

@@ -9,5 +9,6 @@ import categories from './categories/router.js';
 import products from './products/router.js';
 import vakancy from './vakancy/router.js';
 import calculate from './calculate/router.js';
+import images from './images/router.js';
 
-export default[partners,teams,contacts,youtube,projects,client,single,categories,products,vakancy,calculate];
+export default[partners,teams,contacts,youtube,projects,client,single,categories,products,vakancy,calculate,images];

@@ -9,7 +9,7 @@ import {
 
 const GET = async ({categoryId=0}) => {
     try {
-        const categories = await fetchAll(GETCATEGORIES, [categoryId])
+        const categories = await fetchAll(GETCATEGORIES, [categoryId]) 
 
         return categories?.map(category => {
             category.products = category.products[0] == null ? [] : category.products
