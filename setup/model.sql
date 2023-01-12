@@ -88,8 +88,6 @@ CREATE TABLE IF NOT EXISTS products(
     product_description_ru text not null,
     location varchar(100) not null,
     metr varchar(100) not null,
-    still varchar(100) not null,
-    design varchar(100) not null,
     rows smallint not null,
     cols smallint not null,
     date timestamp default current_timestamp
@@ -108,11 +106,11 @@ CREATE TABLE IF NOT EXISTS images(
 
 
 ALTER TABLE products
-DROP COLUMN product_img4;
+DROP COLUMN still;
 ALTER TABLE products
-DROP COLUMN product_img3;
-ALTER TABLE products
-DROP COLUMN product_img2;
+DROP COLUMN design;
+-- ALTER TABLE products
+-- DROP COLUMN product_img2;
 
 CREATE TABLE IF NOT EXISTS vakancy(
     vakancy_id serial PRIMARY KEY,

@@ -10,8 +10,8 @@ const GETPRODUCTS = `
 `;
 
 const POSTPRODUCTS =`
-insert into products (category_id,product_img1,product_title_uz,product_title_en,product_title_ru,product_description_uz,product_description_en,product_description_ru,location,metr,still,design,cols,rows,data_date)
-values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) returning *
+insert into products (category_id,product_img1,product_title_uz,product_title_en,product_title_ru,product_description_uz,product_description_en,product_description_ru,location,metr,cols,rows,data_date)
+values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) returning *
 `;
 
 
@@ -29,8 +29,6 @@ const PUTPRODUCTS = `
             product_description_ru,
             location,
             metr,
-            still,
-            design,
             cols,
             rows,
             data_date
@@ -88,29 +86,19 @@ const PUTPRODUCTS = `
                     when length($11) > 1 then $11
                     else o.metr
                 end,
-                still = 
-                case 
-                    when length($12) > 1 then $12
-                    else o.still
-                end,
-                design = 
-                case 
-                    when length($13) > 1 then $13
-                    else o.design
-                end,
                 cols = 
                 case 
-                    when $14 > 1 then $14
+                    when $12 > 1 then $12
                     else o.cols
                 end,
                 rows = 
                 case 
-                    when $15 > 1 then $15
+                    when $13 > 1 then $13
                     else o.rows
                 end,
                 data_date = 
                 case 
-                    when length($16) > 1 then $16
+                    when length($14) > 1 then $14
                     else o.data_date
                 end
     from old_products as o   
