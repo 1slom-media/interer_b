@@ -65,12 +65,12 @@ const PUTPROJECTS= `
                 case 
                     when length($8) > 1 then $8
                     else o.project_description_ru
-                end
+                end,
         category_id = 
                 case 
                     when $9 > 0 then $9
                     else o.category_id
-                end,
+                end
     from old_projects as o   
     where p.project_id = $1
     returning p.*                 

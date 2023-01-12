@@ -107,8 +107,8 @@ const PUTPRODUCTS = `
 `;
 
 const DELETEPRODUCTS =`
-delete from products
-where product_id=$1 returning *
+delete from products 
+where product_id=$1 returning * 
 `;
 
 export {
